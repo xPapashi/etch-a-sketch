@@ -53,6 +53,7 @@ function drawRandomGridColor() {
     applyToElements(".grid", (grid) => {
       grid.addEventListener("mouseover", () => {
         if (checkboxRGB.checked) {
+          grid.classList.remove('gridBlack');
           let R = Math.floor(Math.random() * 256);
           let G = Math.floor(Math.random() * 256);
           let B = Math.floor(Math.random() * 256);
@@ -76,8 +77,19 @@ function toggleText() {
   });
 }
 
+function eraseGrid() {
+  const button = document.querySelector('#erase');
+
+  button.addEventListener('click', () => {
+    applyToElements('.grid', (grid) => {
+      grid.classList.remove('gridBlack');
+      grid.classList.remove('gridRGB');
+    });
+  });
+}
+
 function openPopup() {
-  const button = document.querySelector(".btnChange");
+  const button = document.querySelector("#change");
 
   button.addEventListener("click", () => {
     let answer = prompt("Enter number of square per side of the grid: e.g. 32");
@@ -99,6 +111,7 @@ function main() {
   setGridDrawColor();
   toggleText();
   openPopup();
+  eraseGrid();
 }
 
 main();
