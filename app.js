@@ -1,5 +1,4 @@
 const DEFAULT_SIZE = 16;
-let removeBorderBool = true;
 
 const checkbox = document.querySelector("#checkbox");
 checkbox.onchange = (e) => toggleText(e);
@@ -27,6 +26,11 @@ function removeGrid() {
   });
 }
 
+function applyToElements(selector, callback) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(callback);
+}
+
 function drawOnGrid() {
   const grids = document.querySelectorAll(".grid");
 
@@ -37,19 +41,28 @@ function drawOnGrid() {
   });
 }
 
-function toggleText(e) {
-    const grids = document.querySelectorAll('.grid');
-
-    grids.forEach((grid) => {
-        console.log(e.target.checked);
-        if (!(e.target.checked)) {
-            grid.style.border = "none";
-            removeBorderBool = true;
-        } else {
-            grid.style.border = "1px solid #000";
-            removeBorderBool = false;
-        }
+function drawRandomGridColor() {
+  applyToElements('.grid', (grid) => {
+    grid.addEventListener('mouseover', () => {
+      let R = Math.floor(Math.random() * 256);
+      let G = Math.floor(Math.random() * 256);
+      let B = Math.floor(Math.random() * 256);
+      grid.style['background-color'] = `rgb(${R},${G},${B})`;
     });
+  });
+}
+
+function toggleText(e) {
+
+  const grids = document.querySelectorAll(".grid");
+
+  grids.forEach((grid) => {
+    if (!e.target.checked) {
+      grid.style.border = "none";
+    } else {
+      grid.style.border = "1px solid #000";
+    }
+  });
 }
 
 function openPopup() {
@@ -71,7 +84,8 @@ function openPopup() {
 
 function main() {
   createGrid(DEFAULT_SIZE);
-  drawOnGrid();
+  //drawOnGrid();
+  drawRandomGridColor();
   openPopup();
   toggleText();
 }
