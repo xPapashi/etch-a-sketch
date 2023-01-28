@@ -27,22 +27,24 @@ h1 {
   --grid-columns: 1;
 }
 
+.grid-wrapper {
+    display: flex;
+    width: 629px;
+    height: 502px;
+}
+
 .container-grid {
   display: grid;
   width: 629px;
   height: 502px;
-  min-height: 0;
-  grid-template-rows: repeat(var(--grid-rows), 1fr);
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  background-color: #fff;
   border: 3px solid rgb(53, 53, 53);
   box-shadow: 1px 2px 3px 4px rgba(27, 27, 27, 0.603);
 }
 
 .grid {
-  text-align: center;
   background-color: #fff;
   color: #424242;
-  padding: 5px;
   border: 1px solid #000;
 }
 
