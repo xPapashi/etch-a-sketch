@@ -25,6 +25,9 @@ h1 {
 :root {
   --grid-rows: 1;
   --grid-columns: 1;
+  --colors-r: 0;
+  --colors-g: 0;
+  --colors-b: 0;
 }
 
 .grid-wrapper {
@@ -49,9 +52,13 @@ h1 {
 }
 
 /* Grid Effects */
-.gridChange {
+.gridBlack {
   background-color: #000;
-  color: #fff;
+  transition: 0.2s;
+}
+
+.gridRGB {
+  background-color: rgb(var(--colors-r), var(--colors-g), var(--colors-b));
   transition: 0.2s;
 }
 
@@ -90,7 +97,7 @@ h1 {
     gap: 20px;
 }
 
-#test {
+.test {
     flex: 1;
 }
 
@@ -114,7 +121,7 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #111111;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -132,7 +139,7 @@ h1 {
 }
 
 input:checked + .slider {
-  background-color: #942a2a;
+  background-color: #be2929;
 }
 
 input:checked + .slider:before {

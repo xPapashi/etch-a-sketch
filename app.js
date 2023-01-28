@@ -1,7 +1,9 @@
 const DEFAULT_SIZE = 16;
+const checkboxBorder = document.querySelector("#checkboxBorder");
+const checkboxRGB = document.querySelector("#checkboxRGB");
 
-const checkbox = document.querySelector("#checkbox");
-checkbox.onchange = (e) => toggleText(e);
+checkboxBorder.onchange = toggleText;
+checkboxRGB.onchange = setGridDrawColor;
 
 function createGrid(size) {
   const container = document.querySelector(".container-grid");
@@ -18,49 +20,58 @@ function createGrid(size) {
   }
 }
 
-function removeGrid() {
-  const grids = document.querySelectorAll(".grid");
-
-  grids.forEach((grid) => {
-    grid.remove();
-  });
-}
-
 function applyToElements(selector, callback) {
   const elements = document.querySelectorAll(selector);
   elements.forEach(callback);
 }
 
-function drawOnGrid() {
-  const grids = document.querySelectorAll(".grid");
+function removeGrid() {
+  applyToElements(".grid", (grid) => {
+    grid.remove();
+  });
+}
 
-  grids.forEach((grid) => {
+function setGridDrawColor() {
+  if (checkboxRGB.checked) {
+    drawRandomGridColor();
+  } else {
+    drawOnGrid();
+  }
+}
+
+function drawOnGrid() {
+  applyToElements(".grid", (grid) => {
     grid.addEventListener("mouseover", () => {
-      grid.classList.add("gridChange");
+      grid.classList.remove("gridRGB");
+      grid.classList.add("gridBlack");
     });
   });
 }
 
 function drawRandomGridColor() {
-  applyToElements('.grid', (grid) => {
-    grid.addEventListener('mouseover', () => {
-      let R = Math.floor(Math.random() * 256);
-      let G = Math.floor(Math.random() * 256);
-      let B = Math.floor(Math.random() * 256);
-      grid.style['background-color'] = `rgb(${R},${G},${B})`;
+  if (checkboxRGB.checked) {
+    applyToElements(".grid", (grid) => {
+      grid.addEventListener("mouseover", () => {
+        if (checkboxRGB.checked) {
+          let R = Math.floor(Math.random() * 256);
+          let G = Math.floor(Math.random() * 256);
+          let B = Math.floor(Math.random() * 256);
+          grid.style.setProperty(`--colors-r`, `${R}`);
+          grid.style.setProperty(`--colors-g`, `${G}`);
+          grid.style.setProperty(`--colors-b`, `${B}`);
+          grid.classList.add("gridRGB");
+        }
+      });
     });
-  });
+  }
 }
 
-function toggleText(e) {
-
-  const grids = document.querySelectorAll(".grid");
-
-  grids.forEach((grid) => {
-    if (!e.target.checked) {
-      grid.style.border = "none";
-    } else {
+function toggleText() {
+  applyToElements(".grid", (grid) => {
+    if (checkboxBorder.checked) {
       grid.style.border = "1px solid #000";
+    } else {
+      grid.style.border = "none";
     }
   });
 }
@@ -77,17 +88,17 @@ function openPopup() {
     else {
       removeGrid();
       createGrid(answer);
-      drawOnGrid();
+      setGridDrawColor();
+      toggleText();
     }
   });
 }
 
 function main() {
   createGrid(DEFAULT_SIZE);
-  //drawOnGrid();
-  drawRandomGridColor();
-  openPopup();
+  setGridDrawColor();
   toggleText();
+  openPopup();
 }
 
 main();
