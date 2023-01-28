@@ -1,10 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-html, body {
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(14, 14, 14);
+  color: #bb3434;
+  font-family: "Roboto", sans-serif;
+  max-height: 100vh;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+.main {
+  display: flex;
+  gap: 100px;
+}
+
+:root {
+  --grid-rows: 1;
+  --grid-columns: 1;
+}
+
+.container-grid {
+  display: grid;
+  width: 629px;
+  height: 502px;
+  min-height: 0;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  border: 3px solid rgb(53, 53, 53);
+  box-shadow: 1px 2px 3px 4px rgba(27, 27, 27, 0.603);
+}
+
+.grid {
+  text-align: center;
+  background-color: #fff;
+  color: #424242;
+  padding: 5px;
+  border: 1px solid #000;
+}
+
+/* Grid Effects */
+.gridChange {
+  background-color: #8d8d8d;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.container-buttons {
+  width: 220px;
+  max-height: 480px;
+  padding: 30px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.btnChange {
+  margin-top: 10px;
+  padding: 10px;
+  width: 240px;
+  height: 45px;
+  background-color: #bb3434;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.btnChange:hover {
+  background-color: #8d2b2b;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.container-switch {
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: #333;
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
+    gap: 20px;
+}
+
+#test {
+    flex: 1;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #942a2a;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

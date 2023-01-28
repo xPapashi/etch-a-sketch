@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project - Etch a sketch!</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <h1>Etch a Sketch</h1>
-</body>
+    <div class="main">
+      <div class="container-grid"></div>
+      <div class="container-buttons">
+        <div class="container-switch">
+          <h3>Toggle Numbers</h3>
+          <label class="switch">
+            <input type="checkbox" id="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div id="test"></div>
+        <button class="btnChange">Change Grid Layout</button>
+      </div>
+    </div>
+  </body>
+  <script src="./app.js"></script>
 </html>
